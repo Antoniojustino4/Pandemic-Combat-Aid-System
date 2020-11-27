@@ -1,11 +1,16 @@
 package com.antonio.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Hospital {
@@ -14,29 +19,34 @@ public class Hospital {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	private String nome;
 	
-	private String endereco;
+	@OneToOne(cascade=CascadeType.ALL)
+	private Endereco endereco;
 	
+	@NotNull
+	@Column(unique=true)
 	private String CNPJ;
 	
-//	private Localizacao localizacao;
-//	
-//	private ArrayList<Recurso> recursos;
+	@OneToOne(cascade=CascadeType.ALL)
+	private Localizacao localizacao;
 	
-//	private int ocupacao;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Recurso> recursos;
+	
+	@NotNull
+	private int ocupacao;
 	
 	public Hospital() {}
+	
 
-	public Hospital(String nome, String endereco, String cNPJ, Localizacao localizacao, ArrayList<Recurso> recursos,
-			int ocupacao) {
-		super();
-		this.nome = nome;
-		this.endereco = endereco;
-		CNPJ = cNPJ;
-//		this.localizacao = localizacao;
-//		this.recursos = recursos;
-//		this.ocupacao = ocupacao;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -47,11 +57,11 @@ public class Hospital {
 		this.nome = nome;
 	}
 
-	public String getEndereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 
@@ -63,28 +73,28 @@ public class Hospital {
 		CNPJ = cNPJ;
 	}
 
-//	public Localizacao getLocalizacao() {
-//		return localizacao;
-//	}
-//
-//	public void setLocalizacao(Localizacao localizacao) {
-//		this.localizacao = localizacao;
-//	}
+	public Localizacao getLocalizacao() {
+		return localizacao;
+	}
 
-//	public ArrayList<Recurso> getRecursos() {
-//		return recursos;
-//	}
-//
-//	public void setRecursos(ArrayList<Recurso> recursos) {
-//		this.recursos = recursos;
-//	}
+	public void setLocalizacao(Localizacao localizacao) {
+		this.localizacao = localizacao;
+	}
 
-//	public int getOcupacao() {
-//		return ocupacao;
-//	}
-//
-//	public void setOcupacao(int ocupacao) {
-//		this.ocupacao = ocupacao;
-//	}
+	public List<Recurso> getRecursos() {
+		return recursos;
+	}
+
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
+	}
+
+	public int getOcupacao() {
+		return ocupacao;
+	}
+
+	public void setOcupacao(int ocupacao) {
+		this.ocupacao = ocupacao;
+	}
 	
 }
