@@ -1,0 +1,2 @@
+INSERT INTO RECURSO (recurso) VALUES
+  ('MEDICO'), ('MEDICO');

@@ -10,6 +10,7 @@ import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,19 +73,25 @@ public class HospitalResource {
 		return optional.isPresent() ? ResponseEntity.ok(optional.get()): ResponseEntity.notFound().build();
 	}
 	
-	@PutMapping("/atualizarOcupacao/{id}")
-	public ResponseEntity<Hospital> atualizarPercentualDeOcupacaoDoHospital(@RequestBody int percentualDeOcupacao,@PathVariable Long id) {
+	@PutMapping("/ocupacao/{id}")
+	public ResponseEntity<Hospital> atualizarPercentualDeOcupacaoDoHospital(@RequestBody int ocupacao,@PathVariable Long id) {
 		Optional<Hospital> optional = hospitalRepository.findById(id);
 		
 		if(optional.isPresent()) {
 			Hospital hospital = optional.get();
-			hospital.setOcupacao(percentualDeOcupacao);
+			hospital.setOcupacao(ocupacao);
 			hospitalRepository.save(hospital);
 			return ResponseEntity.ok(hospital);
 		}
-		
 		return ResponseEntity.notFound().build();
 	}
+	
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable Long id) {
+		hospitalRepository.deleteById(id);
+		
+	}
+	
 
 	
 	

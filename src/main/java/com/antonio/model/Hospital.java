@@ -32,7 +32,7 @@ public class Hospital {
 	@OneToOne(cascade=CascadeType.ALL)
 	private Localizacao localizacao;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade= CascadeType.REFRESH)
 	private List<Recurso> recursos;
 	
 	@NotNull

@@ -18,6 +18,14 @@ public class Recurso {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private EnumRecurso recurso;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public EnumRecurso getRecurso() {
 		return recurso;
