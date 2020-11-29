@@ -4,8 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
+/**Classe para objetos do tipo Endereço, onde serão contidos os atributos de endereço do hospital.
+ * 
+ * @author anton
+ *
+ */
 @Entity
 public class Endereco {
 	

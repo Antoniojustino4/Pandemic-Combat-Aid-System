@@ -1,5 +1,6 @@
 package com.antonio.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,8 +11,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import com.antonio.model.recurso.Recurso;
+
+/**Classe para objetos do tipo Hospital, onde serão contidos, atributos do mesmo.
+ * 
+ * @author anton
+ *
+ */
 @Entity
 public class Hospital {
 	
@@ -36,7 +46,10 @@ public class Hospital {
 	private List<Recurso> recursos;
 	
 	@NotNull
-	private int ocupacao;
+	private int indiceOcupacao;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date ultimaAtualizacao;
 	
 	public Hospital() {}
 	
@@ -89,12 +102,22 @@ public class Hospital {
 		this.recursos = recursos;
 	}
 
-	public int getOcupacao() {
-		return ocupacao;
+	public int getIndiceOcupacao() {
+		return indiceOcupacao;
 	}
 
-	public void setOcupacao(int ocupacao) {
-		this.ocupacao = ocupacao;
+	public void setIndiceOcupacao(int indiceOcupacao) {
+		this.indiceOcupacao = indiceOcupacao;
+	}
+
+
+	public Date getUltimaAtualizacao() {
+		return ultimaAtualizacao;
+	}
+
+
+	public void setUltimaAtualizacao(Date ultimaAtualizacao) {
+		this.ultimaAtualizacao = ultimaAtualizacao;
 	}
 	
 }
